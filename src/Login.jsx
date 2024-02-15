@@ -24,28 +24,15 @@ const Login = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('https://quiz-backend-4o3h.onrender.com/api/user', 
-    {
-      username: formData.username,
-      college: formData.collegeName
-    }).then(res => {
-      const msg = res.data.msg
-      if(msg === "YES") {
-        setErr("User Already Exists....")
-      } else {       
-        localStorage.setItem('quizUser', JSON.stringify(formData));
-        window.location.reload()
-      }
-    }).catch((err) => {
-      console.log(err)
-    })
+    localStorage.setItem('quizUser', JSON.stringify(formData));
+    window.location.reload()
 
   };
 
   return (
-    <div className="quiz-container">
+    <div className="quiz-container" style={{width: "max-content", marginTop: "20vh"}}>
       <>
-        <span className="active-question-no">Enter Your Details</span>
+        <span className="active-question-no" style={{margin: "auto"}}>Set Your Username</span>
         <p style={{color: "red"}}>{errmsg}</p>
 
         <form onSubmit={handleSubmit}>
@@ -60,14 +47,13 @@ const Login = () => {
               required
             />
 
-            <h2>Email</h2>
+            <h2>Email(optional)</h2>
             <input
               style={{ width: "80%", padding: '0.5vh', margin: "0.5vh 0" }}
               type="email"
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              required
             />
 
             <h2>College Name</h2>
@@ -82,7 +68,7 @@ const Login = () => {
           </div>
 
           <div className="footer">
-            <button type="submit">Submit</button>
+            <button type="submit" style={{margin: "auto"}}>Submit</button>
           </div>
         </form>
       </>

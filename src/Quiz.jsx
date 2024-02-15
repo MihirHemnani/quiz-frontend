@@ -56,7 +56,7 @@ const Quiz = ({ questions }) => {
       answer
         ? {
             ...prev,
-            score: prev.score + 5,
+            score: prev.score + 1,
             correctAnswers: prev.correctAnswers + 1,
           }
         : {
@@ -70,6 +70,12 @@ const Quiz = ({ questions }) => {
     } else {
       setCurrentQuestion(0);
       setShowResult(true);
+    }
+
+    if(answer !== true){
+      showLeaderBoard()
+      setShowResult(true);
+      alert("OOPs Incorrect Answer!!! Quiz Over!!!")
     }
   };
 
@@ -123,7 +129,7 @@ const Quiz = ({ questions }) => {
             ))}
           </ul> */}
           <input
-            style={{width: "95%", padding: '0.5vh', margin: "2vh 0"}}
+            style={{width: "99%", padding: '0.5vh', margin: "2vh 0"}}
             type="text"
             value={textFieldValue}
             onChange={handleTextFieldChange}
@@ -136,11 +142,11 @@ const Quiz = ({ questions }) => {
         </>
       ) : (
         leaderboard ? 
-        <div className="result">
+        <div className="result" style={{height: "70vh", overflowY:"scroll", scrollbarWidth: "none"}}>
           <h3>LeaderBoard</h3>
 
 
-          <table style={{width: "100%", border: "solid"}}>
+          <table style={{width: "100%",height: "20vh", border: "solid", overflow:"scroll"}}>
             <thead style={{borderBottom: "solid"}}>
               <tr>
                 <th style={{borderBottom: "dashed"}}><h2>Username</h2></th>

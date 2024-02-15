@@ -16,6 +16,15 @@ body {
   height: 100vh;
 }
 
+table, td, th {
+  border: 1px solid;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
 .quiz-container {
   width: 53vh;
   background: $bg;
