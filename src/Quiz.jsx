@@ -6,7 +6,7 @@ import axios from "axios";
 const Quiz = ({ questions }) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answerIdx, setAnswerIdx] = useState(null);
-  const [ toppers, setToppers ] = useState(topper)
+  const [ toppers, setToppers ] = useState([])
   const [answer, setAnswer] = useState(null);
   const [result, setResult] = useState(resultInitalState);
   const [showResult, setShowResult] = useState(false);
@@ -74,6 +74,7 @@ const Quiz = ({ questions }) => {
 
     if(answer !== true){
       alert("OOPs Incorrect Answer!!! Quiz Over!!!")
+      setCurrentQuestion(0);
       setShowResult(true);
     }
   };
@@ -81,8 +82,8 @@ const Quiz = ({ questions }) => {
   const onExit = () => {
     setResult(resultInitalState);
     setShowResult(false);
-    localStorage.removeItem('quizUser')
     window.location.reload()
+    localStorage.removeItem('quizUser')
   };
 
   const showLeaderBoard =  () => {
@@ -110,8 +111,8 @@ const Quiz = ({ questions }) => {
           <h2>{question}</h2>
           {type === "PHOTO" 
           && 
-          <div>
-            <img style={{maxWidth: "100%", maxHeight: "100%"}} 
+          <div style={{scrollbarWidth: "none"}}>
+            <img style={{ margin: "auto",maxWidth: "100%", maxHeight: "45vh"}} 
             src={'images/' + photo} 
             alt="photo" />
           </div> 
