@@ -73,9 +73,8 @@ const Quiz = ({ questions }) => {
     }
 
     if(answer !== true){
-      showLeaderBoard()
-      setShowResult(true);
       alert("OOPs Incorrect Answer!!! Quiz Over!!!")
+      setShowResult(true);
     }
   };
 
