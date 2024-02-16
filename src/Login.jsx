@@ -1,13 +1,16 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import LeaderBoard from './LeaderBoard';
 
 const Login = () => {
   // State to manage form input values
+  const [leaderboard, setLeaderBoard] = useState(false);
 
   const [formData, setFormData] = useState({
     username: '',
     email: '',
     collegeName: '',
+    currentQuestion: 0
   });
 
   const [errmsg, setErr] = useState("")
@@ -29,9 +32,19 @@ const Login = () => {
 
   };
 
+  const showLeaderBoard =  () => {
+    setLeaderBoard(!leaderboard)
+  }
+
   return (
     <div className="quiz-container" style={{width: "max-content", marginTop: "20vh"}}>
+      {
+      leaderboard ? 
       <>
+        <LeaderBoard />
+      </>  
+      :
+      (<>
         <span className="active-question-no" style={{margin: "auto"}}>Set Your Username</span>
         <p style={{color: "red"}}>{errmsg}</p>
 
@@ -39,7 +52,7 @@ const Login = () => {
           <div style={{ margin: "2vh 0vh" }}>
             <h2>Username</h2>
             <input
-              style={{ width: "80%", padding: '0.5vh', margin: "0.5vh 0" }}
+              style={{ width: "100%", padding: '0.5vh', margin: "0.5vh 0" }}
               type="text"
               name="username"
               value={formData.username}
@@ -47,18 +60,19 @@ const Login = () => {
               required
             />
 
-            <h2>Email(optional)</h2>
+            <h2>Email</h2>
             <input
-              style={{ width: "80%", padding: '0.5vh', margin: "0.5vh 0" }}
+              style={{ width: "100%", padding: '0.5vh', margin: "0.5vh 0" }}
               type="email"
               name="email"
               value={formData.email}
               onChange={handleInputChange}
+              required  
             />
 
-            <h2>College Name</h2>
+            <h2>College/Organization</h2>
             <input
-              style={{ width: "80%", padding: '0.5vh', margin: "0.5vh 0" }}
+              style={{ width: "100%", padding: '0.5vh', margin: "0.5vh 0" }}
               type="text"
               name="collegeName"
               value={formData.collegeName}
@@ -70,8 +84,13 @@ const Login = () => {
           <div className="footer">
             <button type="submit" style={{margin: "auto"}}>Submit</button>
           </div>
+          
         </form>
-      </>
+        
+        </>
+        )
+      }
+      <div style={{textAlign: "center"}}><button onClick={() => showLeaderBoard()}>{!leaderboard ? "LeaderBoard" : "Go Back"}</button></div>
     </div>
   );
 };

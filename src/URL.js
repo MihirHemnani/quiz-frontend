@@ -1,0 +1,1 @@
+export default URL = "https://quiz-backend-4o3h.onrender.com/"
