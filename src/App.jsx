@@ -2,9 +2,11 @@ import Quiz from "./Quiz";
 import { jsQuizz } from "./constants";
 import Login from "./Login";
 import { useEffect } from "react";
+import { decrypt } from "./EncryptDecrypt";
 
 function App() {
-  const user = JSON.parse(localStorage.getItem("quizUser")) || null
+  var storedData = localStorage.getItem('quizUser');
+  const user = decrypt(storedData, 'mihirhemnanijitumal')
 
   useEffect(() => {
 

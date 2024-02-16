@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import LeaderBoard from './LeaderBoard';
+import { encrypt } from './EncryptDecrypt';
 
 const Login = () => {
   // State to manage form input values
@@ -27,9 +27,9 @@ const Login = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem('quizUser', JSON.stringify(formData));
+    const encrypt_text = encrypt(formData, 'mihirhemnanijitumal')
+    localStorage.setItem('quizUser', encrypt_text);
     window.location.reload()
-
   };
 
   const showLeaderBoard =  () => {

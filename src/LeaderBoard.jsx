@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import URL from './URL'
+import {Spinner} from './Spinner'
 
 const LeaderBoard = () => {
     const [ toppers, setToppers ] = useState([])
@@ -12,6 +13,10 @@ const LeaderBoard = () => {
         console.log(err)
         })
     }, [])
+
+    if(toppers.length === 0) {
+      return <Spinner />
+    }
 
     return (
         <div className="result" style={{margin: "auto", height: "100%", overflowY:"scroll", scrollbarWidth: "none"}}>

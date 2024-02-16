@@ -1,13 +1,17 @@
 import { useState } from "react";
 import { resultInitalState } from "./constants";
-import {topper} from './result'
 import axios from "axios";
-import LeaderBoard from "./LeaderBoard";
 import CurrentPosition from "./CurrentPosition";
 import URL from "./URL";
+import { decrypt, encrypt } from "./EncryptDecrypt";
 
 const Quiz = ({ questions }) => {
-  const [currentQuestion, setCurrentQuestion] = useState(JSON.parse(localStorage.getItem('quizUser')).currentQuestion || 0);
+
+  const data = localStorage.getItem('quizUser')
+  const user = decrypt(data, 'mihirhemnanijitumal')
+
+
+  const [currentQuestion, setCurrentQuestion] = useState(user.currentQuestion || 0);
   // const [answerIdx, setAnswerIdx] = useState(null);
   // const [ toppers, setToppers ] = useState([])
   // const [result, setResult] = useState(resultInitalState);
@@ -15,7 +19,6 @@ const Quiz = ({ questions }) => {
   const [answer, setAnswer] = useState(null);
   const [textFieldValue, setTextFieldValue] = useState('');
   const [leaderboard, setLeaderBoard] = useState(false);
-  const user = JSON.parse(localStorage.getItem('quizUser'))
   const [err, setErr] = useState("")
 
   const { question, type, photo, correctAnswer } = questions[currentQuestion];
@@ -73,10 +76,10 @@ const Quiz = ({ questions }) => {
       if(answer) {
         setCurrentQuestion((prev) => prev + 1);
         var storedData = localStorage.getItem('quizUser');
-        var parsedData = JSON.parse(storedData);
+        const parsedData = decrypt(storedData, 'mihirhemnanijitumal')
         parsedData.currentQuestion = parsedData.currentQuestion + 1;
-        var updatedData = JSON.stringify(parsedData);
-        localStorage.setItem('quizUser', updatedData);
+        const encrypt_text = encrypt(parsedData, 'mihirhemnanijitumal')
+        localStorage.setItem('quizUser', encrypt_text);
       }
     } else {
       setCurrentQuestion(0);

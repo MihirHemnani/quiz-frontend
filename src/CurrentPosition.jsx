@@ -2,11 +2,14 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import URL from './URL'
 import LeaderBoard from './LeaderBoard'
+import { decrypt } from './EncryptDecrypt'
+import {Spinner} from './Spinner'
 
 const CurrentPosition = () => {
 
-    const [ currrank, setCurrRank ] = useState(0)
-    const user = JSON.parse(localStorage.getItem('quizUser'))
+    const [ currank, setCurrRank ] = useState(0)
+    const storedData = localStorage.getItem('quizUser')
+    const user = decrypt(storedData, 'mihirhemnanijitumal')
     const [leaderboard, setLeaderBoard] = useState(false);
 
     const showLeaderBoard =  () => {
@@ -26,6 +29,11 @@ const CurrentPosition = () => {
         })
     }, [])
 
+    if(currank === 0) {
+        return <Spinner />
+    }
+
+
     return (
         <>
         {
@@ -43,7 +51,7 @@ const CurrentPosition = () => {
                         Your Score: <span>{user.currentQuestion}</span>
                     </p>
                     <p>
-                        Current Rank: <span>{currrank}</span>
+                        Current Rank: <span>{currank}</span>
                     </p>
                 </div>
             }
