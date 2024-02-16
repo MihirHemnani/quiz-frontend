@@ -8,7 +8,7 @@ import {Spinner} from './Spinner'
 const CurrentPosition = () => {
 
     const [ currank, setCurrRank ] = useState(0)
-    const storedData = localStorage.getItem('quizUser')
+    const storedData = localStorage.getItem('iimbUnmaad')
     const user = decrypt(storedData, 'mihirhemnanijitumal')
     const [leaderboard, setLeaderBoard] = useState(false);
 

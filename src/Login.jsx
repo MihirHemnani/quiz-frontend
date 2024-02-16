@@ -28,7 +28,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const encrypt_text = encrypt(formData, 'mihirhemnanijitumal')
-    localStorage.setItem('quizUser', encrypt_text);
+    localStorage.setItem('iimbUnmaad', encrypt_text);
     window.location.reload()
   };
 

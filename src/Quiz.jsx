@@ -7,7 +7,7 @@ import { decrypt, encrypt } from "./EncryptDecrypt";
 
 const Quiz = ({ questions }) => {
 
-  const data = localStorage.getItem('quizUser')
+  const data = localStorage.getItem('iimbUnmaad')
   const user = decrypt(data, 'mihirhemnanijitumal')
 
 
@@ -75,11 +75,11 @@ const Quiz = ({ questions }) => {
     if (currentQuestion !== questions.length - 1) {
       if(answer) {
         setCurrentQuestion((prev) => prev + 1);
-        var storedData = localStorage.getItem('quizUser');
+        var storedData = localStorage.getItem('iimbUnmaad');
         const parsedData = decrypt(storedData, 'mihirhemnanijitumal')
         parsedData.currentQuestion = parsedData.currentQuestion + 1;
         const encrypt_text = encrypt(parsedData, 'mihirhemnanijitumal')
-        localStorage.setItem('quizUser', encrypt_text);
+        localStorage.setItem('iimbUnmaad', encrypt_text);
       }
     } else {
       setCurrentQuestion(0);
@@ -101,7 +101,7 @@ const Quiz = ({ questions }) => {
   //   setResult(resultInitalState);
   //   setShowResult(false);
   //   window.location.reload()
-  //   localStorage.removeItem('quizUser')
+  //   localStorage.removeItem('iimbUnmaad')
   // };
 
   const showLeaderBoard =  () => {
