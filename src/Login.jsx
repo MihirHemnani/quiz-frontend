@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import LeaderBoard from './LeaderBoard';
 import { encrypt } from './EncryptDecrypt';
+import axios from 'axios'
 
 const Login = () => {
   // State to manage form input values
   const [leaderboard, setLeaderBoard] = useState(false);
+  const [errmsg, setErr] = useState("")
+  
 
   const [formData, setFormData] = useState({
     username: '',
@@ -13,7 +16,6 @@ const Login = () => {
     currentQuestion: 0
   });
 
-  const [errmsg, setErr] = useState("")
 
   // Handle input changes
   const handleInputChange = (e) => {
@@ -27,9 +29,30 @@ const Login = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    const encrypt_text = encrypt(formData, 'mihirhemnanijitumal')
-    localStorage.setItem('iimbUnmaad', encrypt_text);
-    window.location.reload()
+
+    axios.post(URL + 'api/register',
+    {
+      username: formData.username,
+      email: formData.email,
+      college: formData.collegeName,
+      score: 0
+    }
+    ).then(res => {
+      console.log(res)
+      if(res.data.msg === "emailidused") {
+        setErr("Email ID already used!!");
+        setTimeout(() => {
+          setErr("")
+        }, 3000)
+      }
+      else {
+        const encrypt_text = encrypt(formData, 'mihirhemnanijitumal')
+        localStorage.setItem('iimbUnmaad', encrypt_text);
+        window.location.reload()
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
   };
 
   const showLeaderBoard =  () => {

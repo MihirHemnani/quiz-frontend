@@ -108,12 +108,10 @@ const Quiz = ({ questions }) => {
     setLeaderBoard(!leaderboard)
 
     if(!leaderboard) {
-      axios.post( URL + 'api/leaderboard', 
+      axios.post( URL + 'api/updatescore', 
       {
-        score: user.currentQuestion, 
         email: user.email,
-        username: user.username,
-        college: user.collegeName
+        score: user.currentQuestion, 
       }).then().catch((err) => {
         console.log(err)
       })
