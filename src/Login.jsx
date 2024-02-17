@@ -39,7 +39,7 @@ const Login = () => {
       score: 0
     }
     ).then(res => {
-      console.log(res)
+      // console.log(res)
       if(res.data.msg === "emailidused") {
         setErr("Email ID already used!!");
         setTimeout(() => {
