@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import LeaderBoard from './LeaderBoard';
 import { encrypt } from './EncryptDecrypt';
 import axios from 'axios'
+import Key from './Key';
 
 const Login = () => {
   // State to manage form input values
@@ -47,7 +48,7 @@ const Login = () => {
       }
       else {
         const encrypt_text = encrypt(formData, 'mihirhemnanijitumal')
-        localStorage.setItem('iimbUnmaadquiz', encrypt_text);
+        localStorage.setItem(Key, encrypt_text);
         window.location.reload()
       }
     }).catch((err) => {
