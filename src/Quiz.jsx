@@ -7,7 +7,7 @@ import { decrypt, encrypt } from "./EncryptDecrypt";
 
 const Quiz = ({ questions }) => {
 
-  const data = localStorage.getItem('iimbUnmaad')
+  const data = localStorage.getItem('iimbUnmaadquiz')
   const user = decrypt(data, 'mihirhemnanijitumal')
 
 

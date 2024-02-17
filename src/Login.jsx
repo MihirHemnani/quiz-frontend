@@ -47,7 +47,7 @@ const Login = () => {
       }
       else {
         const encrypt_text = encrypt(formData, 'mihirhemnanijitumal')
-        localStorage.setItem('iimbUnmaad', encrypt_text);
+        localStorage.setItem('iimbUnmaadquiz', encrypt_text);
         window.location.reload()
       }
     }).catch((err) => {

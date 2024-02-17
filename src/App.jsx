@@ -4,7 +4,7 @@ import Login from "./Login";
 import { decrypt } from "./EncryptDecrypt";
 
 function App() {
-  var user = localStorage.getItem('iimbUnmaad') || null;
+  var user = localStorage.getItem('iimbUnmaadquiz') || null;
   if(user) {
     user = decrypt(user, 'mihirhemnanijitumal') || null
   }
