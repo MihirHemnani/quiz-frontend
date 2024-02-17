@@ -4,7 +4,7 @@ import axios from "axios";
 import CurrentPosition from "./CurrentPosition";
 import URL from "./URL";
 import { decrypt, encrypt } from "./EncryptDecrypt";
-import Key from "./Key";
+import {KEY} from "./Key";
 
 const Quiz = ({ questions }) => {
 
@@ -76,11 +76,11 @@ const Quiz = ({ questions }) => {
     if (currentQuestion !== questions.length - 1) {
       if(answer) {
         setCurrentQuestion((prev) => prev + 1);
-        var storedData = localStorage.getItem(Key);
+        var storedData = localStorage.getItem(KEY);
         const parsedData = decrypt(storedData, 'mihirhemnanijitumal')
         parsedData.currentQuestion = parsedData.currentQuestion + 1;
         const encrypt_text = encrypt(parsedData, 'mihirhemnanijitumal')
-        localStorage.setItem(Key, encrypt_text);
+        localStorage.setItem(KEY, encrypt_text);
       }
     } else {
       setCurrentQuestion(0);

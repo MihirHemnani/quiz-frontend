@@ -4,12 +4,12 @@ import URL from './URL'
 import LeaderBoard from './LeaderBoard'
 import { decrypt } from './EncryptDecrypt'
 import {Spinner} from './Spinner'
-import Key from './Key'
+import { KEY } from './Key'
 
 const CurrentPosition = () => {
 
     const [ currank, setCurrRank ] = useState(0)
-    const storedData = localStorage.getItem(Key)
+    const storedData = localStorage.getItem(KEY)
     const user = decrypt(storedData, 'mihirhemnanijitumal')
     const [leaderboard, setLeaderBoard] = useState(false);
 

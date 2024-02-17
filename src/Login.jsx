@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import LeaderBoard from './LeaderBoard';
 import { encrypt } from './EncryptDecrypt';
 import axios from 'axios'
-import Key from './Key';
+import { KEY } from './Key';
 
 const Login = () => {
   // State to manage form input values
@@ -48,7 +48,7 @@ const Login = () => {
       }
       else {
         const encrypt_text = encrypt(formData, 'mihirhemnanijitumal')
-        localStorage.setItem(Key, encrypt_text);
+        localStorage.setItem(KEY, encrypt_text);
         window.location.reload()
       }
     }).catch((err) => {

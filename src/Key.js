@@ -1,1 +1,1 @@
-export default Key = "iimbUnmaadquiz"
+export const KEY = "iimbUnmaadquiz"
