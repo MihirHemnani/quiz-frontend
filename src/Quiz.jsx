@@ -153,16 +153,23 @@ const Quiz = ({ questions }) => {
               </li>
             ))}
           </ul> */}
-          <input
+          {currentQuestion !== questions.length - 1 && <input
             style={{width: "99%", padding: '0.5vh', margin: "2vh 0"}}
             type="text"
             value={textFieldValue}
             onChange={handleTextFieldChange}
-          />
+          />}
           <div className="footer">
-            <button onClick={() => onClickNext()} disabled={textFieldValue === ""}>
-              {currentQuestion === questions.length - 1 ? "Finish" : "Next"}
+
+            {
+              currentQuestion === questions.length - 1 ? 
+              <></>
+              :
+              <button onClick={() => onClickNext()} disabled={textFieldValue === ""}>
+              Next
             </button>
+            }
+            
           </div>
         </>
       ) : (

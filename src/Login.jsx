@@ -38,11 +38,12 @@ const Login = () => {
       </p>
 
       <p class=" fs-3">
-          2.	Participants must register on unmaad.com to be eligible for the event.
+          2.	Participants must provide accurate and complete information during
+registration.
       </p>
 
       <p class=" fs-3">
-          3.	Participants must provide accurate and complete information during registration.
+          3.	The link will be provided closer to the launch of the event.
       </p>
 
       <p class=" fs-3">
@@ -54,23 +55,31 @@ const Login = () => {
       </p>
 
       <p class=" fs-3">
-          6.	Questions will be presented in image format, and participants are required to enter their answers in the provided text field.
+          6.	Ǫuestions will be presented in image format, and participants are required to
+enter their answers in the provided text field in small case without space and
+special characters (Numbers are allowed).
+
       </p>
 
       <p class=" fs-3">
-          7.	Participants must adhere to fair play and ethical conduct throughout the event.
+          7.	Participants are responsible for submitting their answers within the specified
+time frame.
+
       </p>
 
       <p class=" fs-3">
-          8.	Any form of cheating, plagiarism, or use of external assistance is strictly prohibited and may lead to disqualification.
+          8.	Correct answers will be awarded points based on the scoring system outlined
+on unmaad.com
       </p>
 
       <p class=" fs-3">
-          9.	Participants are responsible for submitting their answers within the specified time frame.
+          9.	The first player to complete the 60 questions with correct answers will be
+declared the winner
       </p>
 
       <p class=" fs-3">
-          10.	Correct answers will be awarded points based on the scoring system outlined on unmaad.com.
+          10.	For eg if the image is Nike logo <br/>
+          &nbsp; &nbsp; &nbsp;a. Answer could be justdoit.
       </p>
 
       <p class=" fs-3">
@@ -82,11 +91,13 @@ const Login = () => {
       </p>
 
       <p class=" fs-3">
-          13.	Prize distribution details will be communicated on the event website.
+          13.	Prize distribution details will be communicated on the event website and email.
       </p>
 
       <p class=" fs-3">
-          14.	Unmaad is not responsible for any technical issues, including but not limited to internet connectivity problems, server downtimes, or platform malfunctions.
+          14.	Unmaad is not responsible for any technical issues, including but not limited to
+internet connectivity problems, server downtimes, or platform malfunctions.
+
       </p>
 
       <p class=" fs-3">
