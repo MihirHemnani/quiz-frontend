@@ -20,8 +20,7 @@ const LeaderBoard = () => {
 
     return (
         <div className="result" style={{margin: "auto", height: "100%", overflowY:"scroll", scrollbarWidth: "none"}}>
-          <h3>LeaderBoard</h3>
-
+          <div style={{textAlign: "center", marginTop: "1vh", marginBottom: "1vh"}}><span className="active-question-no">LeaderBoard</span></div>
 
           <table style={{margin: "auto", width: "100%",border: "solid", overflow:"scroll"}}>
             <thead style={{borderBottom: "solid"}}>

@@ -44,7 +44,7 @@ const CurrentPosition = () => {
             :
 
                 <div className="result">
-                    <h3>Result</h3>
+                    <div style={{textAlign: "center", marginTop: "1vh", marginBottom: "1vh"}}><span className="active-question-no">Result</span></div>
                     <p>
                         Total Questions: <span>60</span>
                     </p>

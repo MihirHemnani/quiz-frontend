@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { resultInitalState } from "./constants";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import CurrentPosition from "./CurrentPosition";
 import URL from "./URL";
@@ -13,10 +12,6 @@ const Quiz = ({ questions }) => {
 
 
   const [currentQuestion, setCurrentQuestion] = useState(user.currentQuestion || 0);
-  // const [answerIdx, setAnswerIdx] = useState(null);
-  // const [ toppers, setToppers ] = useState([])
-  // const [result, setResult] = useState(resultInitalState);
-  // const [showResult, setShowResult] = useState(false);
   const [answer, setAnswer] = useState(null);
   const [textFieldValue, setTextFieldValue] = useState('');
   const [leaderboard, setLeaderBoard] = useState(false);
@@ -36,42 +31,8 @@ const Quiz = ({ questions }) => {
     setTextFieldValue(cleanedStr);
   };
 
-  // const onAnwswerClick = (answer, index) => {
-  //   setAnswerIdx(index);
-  //   if (answer === correctAnswer) {
-  //     setAnswer(true);
-  //   } else {
-  //     setAnswer(false);
-  //   }
-    
-  //   // console.log(answerIdx)
-  // };
-
-  // const sendResult = () => {
-  //   // const response = await fetch(`http://localhost:8000/api/leaderboard`, {
-  //   //   method: "POST",
-  //   //   body: JSON.stringify(result)
-  //   // });
-
-  //   // console.log(response)
-  //   axios.post('http://localhost:8000/api/leaderboard', result)
-  // }
-
   const onClickNext = () => {
-    // setAnswerIdx(null);
     setTextFieldValue("");
-    // setResult((prev) =>
-    //   answer
-    //     ? {
-    //         ...prev,
-    //         score: prev.score + 1,
-    //         correctAnswers: prev.correctAnswers + 1,
-    //       }
-    //     : {
-    //         ...prev,
-    //         wrongAnswers: prev.wrongAnswers + 1,
-    //       }
-    // );
 
     if (currentQuestion !== questions.length - 1) {
       if(answer) {
@@ -84,12 +45,11 @@ const Quiz = ({ questions }) => {
       }
     } else {
       setCurrentQuestion(0);
-      // setShowResult(true);
     }
 
     if(!answer){
       // alert("OOPs Incorrect Answer!!! Quiz Over!!!")
-      setErr("Incorrect Answer !!")
+      setErr("Incorrect Answer")
       setTimeout(() => {
         setErr("")
       }, 3000)
@@ -98,27 +58,19 @@ const Quiz = ({ questions }) => {
     }
   };
 
-  // const onExit = () => {
-  //   setResult(resultInitalState);
-  //   setShowResult(false);
-  //   window.location.reload()
-  //   localStorage.removeItem('iimbUnmaad')
-  // };
-
   const showLeaderBoard =  () => {
-    setLeaderBoard(!leaderboard)
-
-    if(!leaderboard) {
-      axios.post( URL + 'api/updatescore', 
-      {
-        email: user.email,
-        score: user.currentQuestion, 
-      }).then().catch((err) => {
-        console.log(err)
-      })
-    }
-    
+    setLeaderBoard(!leaderboard);
   }
+
+  useEffect(() => {
+    axios.post( URL + 'api/updatescore', 
+    {
+      email: user.email,
+      score: user.currentQuestion, 
+    }).then().catch((err) => {
+      console.log(err)
+    })
+  }, [currentQuestion])
 
   return (
     <div className="quiz-container">

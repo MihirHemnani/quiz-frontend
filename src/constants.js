@@ -16,7 +16,7 @@ export const jsQuizz = {
       "Difficulty": "easy",
       "photo": "VE_3.png",
       "type": "PHOTO",
-      "correctAnswer": "farzi"
+      "correctAnswer": "sadhguru"
     },
     {
       "Difficulty": "easy",
@@ -82,7 +82,7 @@ export const jsQuizz = {
       "Difficulty": "easy",
       "photo": "VE_14.png",
       "type": "PHOTO",
-      "correctAnswer": "sadhguru"
+      "correctAnswer": "madhushala"
     },
     {
       "Difficulty": "easy",
@@ -94,7 +94,7 @@ export const jsQuizz = {
       "Difficulty": "Moderate",
       "photo": "VE_16.png",
       "type": "PHOTO",
-      "correctAnswer": "andhadun"
+      "correctAnswer": "andhadhun"
     },
     {
       "Difficulty": "Moderate",
@@ -106,7 +106,7 @@ export const jsQuizz = {
       "Difficulty": "Moderate",
       "photo": "VE_18.png",
       "type": "PHOTO",
-      "correctAnswer": "laapataladies"
+      "correctAnswer": "laapataaladies"
     },
     {
       "Difficulty": "Difficult",
@@ -124,7 +124,7 @@ export const jsQuizz = {
       "Difficulty": "easy",
       "photo": "VE_21.png",
       "type": "PHOTO",
-      "correctAnswer": "nukkadnatak"
+      "correctAnswer": "floralfantasia"
     },
     {
       "Difficulty": "easy",
@@ -166,7 +166,7 @@ export const jsQuizz = {
       "Difficulty": "Moderate",
       "photo": "VE_28.png",
       "type": "PHOTO",
-      "correctAnswer": "chandrayaan"
+      "correctAnswer": "chandrayaan3"
     },
     {
       "Difficulty": "Difficult",
