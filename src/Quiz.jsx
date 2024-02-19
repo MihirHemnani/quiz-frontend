@@ -134,6 +134,11 @@ const Quiz = ({ questions }) => {
           <div style={{textAlign: "center", marginTop: "1vh", marginBottom: "1vh"}}><span className="active-question-no">{currentQuestion + 1}</span>
           <span className="total-question">/{questions.length}</span></div>
           {/* <h2>{question}</h2> */}
+          {currentQuestion === questions.length - 1 &&  <div style={{textAlign: "center", marginTop: "1vh"}}>
+          <span style={{color: "black"}} className="active-question-no">Scan this QR code
+          </span>
+        </div>
+        }
           {type === "PHOTO" 
           && 
           <div style={{scrollbarWidth: "none", textAlign: "center"}}>
