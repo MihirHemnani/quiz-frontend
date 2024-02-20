@@ -14,9 +14,9 @@ const Login = () => {
   
 
   const [formData, setFormData] = useState({
-    username: 'mihir',
-    email: 'm@gmail.com',
-    collegeName: 'mihir',
+    username: '',
+    email: '',
+    collegeName: '',
     currentQuestion: 0
   });
 

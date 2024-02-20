@@ -22,7 +22,12 @@ const CurrentPosition = () => {
             }
         ).then(res => {
             // console.log(res.data.rank)
-            setCurrRank(res.data.rank)
+            if(res.data.msg) {
+                setCurrRank(res.data.rank)
+            } else {
+                localStorage.removeItem(`${import.meta.env.VITE_KEY}`);
+                window.location.reload()
+            }
         }).catch((err) => {
             console.log(err)
         })

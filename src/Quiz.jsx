@@ -10,51 +10,41 @@ const Quiz = ({ questions }) => {
 
 
   const [currentQuestion, setCurrentQuestion] = useState(user.currentQuestion || 0);
-  const [answer, setAnswer] = useState(null);
   const [textFieldValue, setTextFieldValue] = useState('');
   const [leaderboard, setLeaderBoard] = useState(false);
   const [err, setErr] = useState("")
 
-  const { question, type, photo, correctAnswer } = questions[currentQuestion];
+  const { question, type, photo } = questions[currentQuestion];
 
 
   const handleTextFieldChange = (event) => {
     let cleanedStr = event.target.value.replace(/[^\w\s]/gi, '').replace(/\s+/g, '');
     cleanedStr = cleanedStr.toLowerCase()
-    
-    if (cleanedStr === correctAnswer) {
-      setAnswer(true);
-    } else {
-      setAnswer(false);
-    }
-    setTextFieldValue(cleanedStr);
+    setTextFieldValue(cleanedStr)
   };
 
   const onClickNext = () => {
-    setTextFieldValue("");
 
-    if (currentQuestion !== questions.length - 1) {
-      if(answer) {
-        setCurrentQuestion((prev) => prev + 1);
-        var storedData = localStorage.getItem(`${import.meta.env.VITE_KEY}`);
-        const parsedData = decrypt(storedData, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
-        parsedData.currentQuestion = parsedData.currentQuestion + 1;
-        const encrypt_text = encrypt(parsedData, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
-        localStorage.setItem(`${import.meta.env.VITE_KEY}`, encrypt_text);
+    axios.post(`${import.meta.env.VITE_API}` + "api/answer",
+    {
+      questionId: currentQuestion,
+      answer: textFieldValue
+    }
+    ).then(res => {
+      if(res.data.msg) {
+        setTextFieldValue("")
+        if(questions.length !== currentQuestion) {
+          setCurrentQuestion((prev) => prev + 1);
+        }
+      } else {
+        setErr("Incorrect Answer")
+        setTimeout(() => {
+          setErr("")
+        }, 3000)
       }
-    } else {
-      setCurrentQuestion(0);
-    }
-
-    if(!answer){
-      // alert("OOPs Incorrect Answer!!! Quiz Over!!!")
-      setErr("Incorrect Answer")
-      setTimeout(() => {
-        setErr("")
-      }, 3000)
-      // setCurrentQuestion(0);
-      // setShowResult(true);
-    }
+    }).catch((err) => {
+      console.log(err)
+    })
   };
 
   const showLeaderBoard =  () => {
@@ -65,8 +55,20 @@ const Quiz = ({ questions }) => {
     axios.post(`${import.meta.env.VITE_API}` + 'api/updatescore', 
     {
       email: user.email,
-      score: user.currentQuestion, 
-    }).then().catch((err) => {
+      score: currentQuestion, 
+    }).then((res) => {
+      if(res.data.msg) {
+        var storedData = localStorage.getItem(`${import.meta.env.VITE_KEY}`);
+        const parsedData = decrypt(storedData, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
+        parsedData.currentQuestion = currentQuestion;
+        const encrypt_text = encrypt(parsedData, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
+        localStorage.setItem(`${import.meta.env.VITE_KEY}`, encrypt_text);
+      } else {
+        localStorage.removeItem(`${import.meta.env.VITE_KEY}`);
+        window.location.reload()
+      }
+    }
+    ).catch((err) => {
       console.log(err)
     })
   }, [currentQuestion])
