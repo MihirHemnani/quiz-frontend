@@ -24,7 +24,7 @@ const Quiz = ({ questions }) => {
   };
 
   const onClickNext = () => {
-
+    
     axios.post(`${import.meta.env.VITE_API}` + "api/answer",
     {
       questionId: currentQuestion,
@@ -131,7 +131,7 @@ const Quiz = ({ questions }) => {
           </div>
         </>
       ) : (
-        <CurrentPosition />
+        <CurrentPosition props={questions.length}/>
       )}
       <div style={{textAlign: "center"}}><button onClick={() => showLeaderBoard()}>{!leaderboard ? "Current Rank" : "Go Back"}</button></div>
     </div>

@@ -4,7 +4,7 @@ import LeaderBoard from './LeaderBoard'
 import { decrypt } from './EncryptDecrypt'
 import {Spinner} from './Spinner'
 
-const CurrentPosition = () => {
+const CurrentPosition = (props) => {
 
     const [ currank, setCurrRank ] = useState(0)
     const storedData = localStorage.getItem(`${import.meta.env.VITE_KEY}`)
@@ -37,7 +37,6 @@ const CurrentPosition = () => {
         return <Spinner />
     }
 
-
     return (
         <>
         {
@@ -49,7 +48,7 @@ const CurrentPosition = () => {
                 <div className="result">
                     <div style={{textAlign: "center", marginTop: "1vh", marginBottom: "1vh"}}><span className="active-question-no">Result</span></div>
                     <p>
-                        Total Questions: <span>60</span>
+                        Total Questions: <span>{props.props}</span>
                     </p>
                     <p>
                         Your Score: <span>{user.currentQuestion}</span>
