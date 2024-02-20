@@ -34,6 +34,10 @@ const PlayRules = () => {
     7.	Utilize a single device for login to mitigate the risk of any malicious activities.
 </p>
 
+<p className=" fs-3">
+    8.	Avoid utilizing incognito mode when logging in.
+</p>
+
     </>
   )
 }
