@@ -7,7 +7,7 @@ import {KEY} from "./Key";
 
 const Quiz = ({ questions }) => {
 
-  const data = localStorage.getItem('iimbUnmaadquiz')
+  const data = localStorage.getItem(KEY)
   const user = decrypt(data, 'mihirhemnanijitumal')
 
 
