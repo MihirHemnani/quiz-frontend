@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import LeaderBoard from './LeaderBoard';
 import { encrypt } from './EncryptDecrypt';
 import axios from 'axios'
-import { KEY } from './Key';
 import Rules from './Rules';
 import PlayRules from './PlayRules';
 
@@ -67,7 +66,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post(URL + 'api/register',
+    axios.post(`${import.meta.env.API}` + 'api/register',
     {
       username: formData.username,
       email: formData.email,
@@ -83,8 +82,8 @@ const Login = () => {
         }, 3000)
       }
       else {
-        const encrypt_text = encrypt(formData, 'mihirhemnanijitumal')
-        localStorage.setItem(KEY, encrypt_text);
+        const encrypt_text = encrypt(formData, process.env.ENCRYPTION_KEY)
+        localStorage.setItem(process.env.KEY, encrypt_text);
         window.location.reload()
       }
     }).catch((err) => {

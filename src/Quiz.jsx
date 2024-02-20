@@ -1,14 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CurrentPosition from "./CurrentPosition";
-import URL from "./URL";
 import { decrypt, encrypt } from "./EncryptDecrypt";
-import {KEY} from "./Key";
 
 const Quiz = ({ questions }) => {
 
-  const data = localStorage.getItem(KEY)
-  const user = decrypt(data, 'mihirhemnanijitumal')
+  const data = localStorage.getItem(`${import.meta.env.KEY}`)
+  const user = decrypt(data, `${import.meta.env.ENCRYPTION_KEY}`)
 
 
   const [currentQuestion, setCurrentQuestion] = useState(user.currentQuestion || 0);
@@ -37,11 +35,11 @@ const Quiz = ({ questions }) => {
     if (currentQuestion !== questions.length - 1) {
       if(answer) {
         setCurrentQuestion((prev) => prev + 1);
-        var storedData = localStorage.getItem(KEY);
-        const parsedData = decrypt(storedData, 'mihirhemnanijitumal')
+        var storedData = localStorage.getItem(`${import.meta.env.KEY}`);
+        const parsedData = decrypt(storedData, `${import.meta.env.ENCRYPTION_KEY}`)
         parsedData.currentQuestion = parsedData.currentQuestion + 1;
-        const encrypt_text = encrypt(parsedData, 'mihirhemnanijitumal')
-        localStorage.setItem(KEY, encrypt_text);
+        const encrypt_text = encrypt(parsedData, `${import.meta.env.ENCRYPTION_KEY}`)
+        localStorage.setItem(`${import.meta.env.KEY}`, encrypt_text);
       }
     } else {
       setCurrentQuestion(0);
@@ -63,7 +61,7 @@ const Quiz = ({ questions }) => {
   }
 
   useEffect(() => {
-    axios.post( URL + 'api/updatescore', 
+    axios.post(`${import.meta.env.API}` + 'api/updatescore', 
     {
       email: user.email,
       score: user.currentQuestion, 

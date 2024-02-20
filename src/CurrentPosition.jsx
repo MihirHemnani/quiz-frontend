@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import URL from './URL'
 import LeaderBoard from './LeaderBoard'
 import { decrypt } from './EncryptDecrypt'
 import {Spinner} from './Spinner'
-import { KEY } from './Key'
 
 const CurrentPosition = () => {
 
     const [ currank, setCurrRank ] = useState(0)
-    const storedData = localStorage.getItem(KEY)
-    const user = decrypt(storedData, 'mihirhemnanijitumal')
+    const storedData = localStorage.getItem(`${import.meta.env.KEY}`)
+    const user = decrypt(storedData, `${import.meta.env.ENCRYPTION_KEY}`)
     const [leaderboard, setLeaderBoard] = useState(false);
 
     const showLeaderBoard =  () => {
@@ -18,7 +16,7 @@ const CurrentPosition = () => {
     }
 
     useEffect(() => {
-        axios.post(URL + 'api/currentposition',
+        axios.post(`${import.meta.env.API}` + 'api/currentposition',
             {
                 email: user.email
             }

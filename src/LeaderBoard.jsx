@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import URL from './URL'
 import {Spinner} from './Spinner'
 
 const LeaderBoard = () => {
     const [ toppers, setToppers ] = useState([])
 
     useEffect(() => {
-        axios.get(URL + 'api/leaderboard').then(res => {
+        axios.get(`${import.meta.env.API}` + 'api/leaderboard').then(res => {
             setToppers(res.data)
         }).catch((err) => {
         console.log(err)
