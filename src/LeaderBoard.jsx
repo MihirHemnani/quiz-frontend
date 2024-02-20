@@ -6,7 +6,7 @@ const LeaderBoard = () => {
     const [ toppers, setToppers ] = useState([])
 
     useEffect(() => {
-        axios.get(`${import.meta.env.API}` + 'api/leaderboard').then(res => {
+        axios.get(`${import.meta.env.VITE_API}` + 'api/leaderboard').then(res => {
             setToppers(res.data)
         }).catch((err) => {
         console.log(err)

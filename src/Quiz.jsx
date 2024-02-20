@@ -5,8 +5,8 @@ import { decrypt, encrypt } from "./EncryptDecrypt";
 
 const Quiz = ({ questions }) => {
 
-  const data = localStorage.getItem(`${import.meta.env.KEY}`)
-  const user = decrypt(data, `${import.meta.env.ENCRYPTION_KEY}`)
+  const data = localStorage.getItem(`${import.meta.env.VITE_KEY}`)
+  const user = decrypt(data, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
 
 
   const [currentQuestion, setCurrentQuestion] = useState(user.currentQuestion || 0);
@@ -16,6 +16,7 @@ const Quiz = ({ questions }) => {
   const [err, setErr] = useState("")
 
   const { question, type, photo, correctAnswer } = questions[currentQuestion];
+
 
   const handleTextFieldChange = (event) => {
     let cleanedStr = event.target.value.replace(/[^\w\s]/gi, '').replace(/\s+/g, '');
@@ -35,11 +36,11 @@ const Quiz = ({ questions }) => {
     if (currentQuestion !== questions.length - 1) {
       if(answer) {
         setCurrentQuestion((prev) => prev + 1);
-        var storedData = localStorage.getItem(`${import.meta.env.KEY}`);
-        const parsedData = decrypt(storedData, `${import.meta.env.ENCRYPTION_KEY}`)
+        var storedData = localStorage.getItem(`${import.meta.env.VITE_KEY}`);
+        const parsedData = decrypt(storedData, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
         parsedData.currentQuestion = parsedData.currentQuestion + 1;
-        const encrypt_text = encrypt(parsedData, `${import.meta.env.ENCRYPTION_KEY}`)
-        localStorage.setItem(`${import.meta.env.KEY}`, encrypt_text);
+        const encrypt_text = encrypt(parsedData, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
+        localStorage.setItem(`${import.meta.env.VITE_KEY}`, encrypt_text);
       }
     } else {
       setCurrentQuestion(0);
@@ -61,7 +62,7 @@ const Quiz = ({ questions }) => {
   }
 
   useEffect(() => {
-    axios.post(`${import.meta.env.API}` + 'api/updatescore', 
+    axios.post(`${import.meta.env.VITE_API}` + 'api/updatescore', 
     {
       email: user.email,
       score: user.currentQuestion, 

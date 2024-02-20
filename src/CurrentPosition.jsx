@@ -7,8 +7,8 @@ import {Spinner} from './Spinner'
 const CurrentPosition = () => {
 
     const [ currank, setCurrRank ] = useState(0)
-    const storedData = localStorage.getItem(`${import.meta.env.KEY}`)
-    const user = decrypt(storedData, `${import.meta.env.ENCRYPTION_KEY}`)
+    const storedData = localStorage.getItem(`${import.meta.env.VITE_KEY}`)
+    const user = decrypt(storedData, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
     const [leaderboard, setLeaderBoard] = useState(false);
 
     const showLeaderBoard =  () => {
@@ -16,7 +16,7 @@ const CurrentPosition = () => {
     }
 
     useEffect(() => {
-        axios.post(`${import.meta.env.API}` + 'api/currentposition',
+        axios.post(`${import.meta.env.VITE_API}` + 'api/currentposition',
             {
                 email: user.email
             }

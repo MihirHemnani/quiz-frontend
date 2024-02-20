@@ -14,9 +14,9 @@ const Login = () => {
   
 
   const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    collegeName: '',
+    username: 'mihir',
+    email: 'm@gmail.com',
+    collegeName: 'mihir',
     currentQuestion: 0
   });
 
@@ -65,8 +65,7 @@ const Login = () => {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    axios.post(`${import.meta.env.API}` + 'api/register',
+    axios.post(`${import.meta.env.VITE_API}` + "api/register",
     {
       username: formData.username,
       email: formData.email,
@@ -82,8 +81,8 @@ const Login = () => {
         }, 3000)
       }
       else {
-        const encrypt_text = encrypt(formData, process.env.ENCRYPTION_KEY)
-        localStorage.setItem(process.env.KEY, encrypt_text);
+        const encrypt_text = encrypt(formData, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
+        localStorage.setItem(`${import.meta.env.VITE_KEY}`, encrypt_text);
         window.location.reload()
       }
     }).catch((err) => {
@@ -100,7 +99,7 @@ const Login = () => {
     {play && <Play />}
 
     {!play && !pop &&
-    <div className="quiz-container" style={{width: "max-content", marginTop: "20vh"}}>
+    <div className="quiz-container" style={{width: "max-content", marginTop: "20vh", scrollbarWidth: "none"}}>
       {
       leaderboard ? 
       <>
