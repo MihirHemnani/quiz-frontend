@@ -30,6 +30,10 @@ const PlayRules = () => {
     6.	Clues for a few questions might be shared on unmaad's official Instagram page.
 </p>
 
+<p className=" fs-3">
+    7.	Utilize a single device for login to mitigate the risk of any malicious activities.
+</p>
+
     </>
   )
 }
