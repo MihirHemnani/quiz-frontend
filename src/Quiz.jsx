@@ -43,7 +43,7 @@ const Quiz = ({ questions }) => {
         }, 3000)
       }
     }).catch((err) => {
-      console.log(err)
+      console.log("err")
     })
   };
 
@@ -69,7 +69,7 @@ const Quiz = ({ questions }) => {
       }
     }
     ).catch((err) => {
-      console.log(err)
+      console.log("err")
     })
   }, [currentQuestion])
 

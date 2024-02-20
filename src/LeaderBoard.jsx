@@ -9,7 +9,7 @@ const LeaderBoard = () => {
         axios.get(`${import.meta.env.VITE_API}` + 'api/leaderboard').then(res => {
             setToppers(res.data)
         }).catch((err) => {
-        console.log(err)
+        console.log("err")
         })
     }, [])
 
