@@ -14,7 +14,7 @@ const Quiz = ({ questions }) => {
   const [leaderboard, setLeaderBoard] = useState(false);
   const [err, setErr] = useState("")
 
-  const { question, type, photo } = questions[currentQuestion];
+  const { Difficulty, type, photo } = questions[currentQuestion];
 
 
   const handleTextFieldChange = (event) => {
@@ -88,7 +88,7 @@ const Quiz = ({ questions }) => {
           <span className="total-question">/{questions.length}</span></div>
           {/* <h2>{question}</h2> */}
           {currentQuestion === questions.length - 1 &&  <div style={{textAlign: "center", marginTop: "1vh"}}>
-          <span style={{color: "black"}} className="active-question-no">Scan this QR code
+          <span style={{color: "black"}} className="active-question-no">{Difficulty}
           </span>
         </div>
         }
