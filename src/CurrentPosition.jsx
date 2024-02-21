@@ -52,9 +52,6 @@ const CurrentPosition = (props) => {
                         Total Questions: <span>{props.props - 1}</span>
                     </p>
                     <p>
-                        Your Score: <span>{user.currentQuestion}</span>
-                    </p>
-                    <p>
                         Current Rank: <span>{currank}</span>
                     </p>
                     <p>

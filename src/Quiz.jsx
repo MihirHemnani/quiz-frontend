@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import CurrentPosition from "./CurrentPosition";
 import { decrypt, encrypt } from "./EncryptDecrypt";
+import { Spinner } from "./Spinner";
 
 const Quiz = ({ questions }) => {
 
@@ -9,12 +10,12 @@ const Quiz = ({ questions }) => {
   const user = decrypt(data, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
 
 
-  const [currentQuestion, setCurrentQuestion] = useState(user.currentQuestion || 0);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
   const [textFieldValue, setTextFieldValue] = useState('');
   const [leaderboard, setLeaderBoard] = useState(false);
   const [err, setErr] = useState("")
 
-  const { Difficulty, type, photo } = questions[currentQuestion];
+  const { type, photo } = questions[currentQuestion];
 
 
   const handleTextFieldChange = (event) => {
@@ -32,10 +33,28 @@ const Quiz = ({ questions }) => {
     }
     ).then(res => {
       if(res.data.msg) {
-        setTextFieldValue("")
         if(questions.length !== currentQuestion) {
           setCurrentQuestion((prev) => prev + 1);
+          axios.post(`${import.meta.env.VITE_API}` + 'api/updatescore', 
+          {
+            email: user.email,
+          }).then((res) => {
+            if(res.data.msg) {
+              var storedData = localStorage.getItem(`${import.meta.env.VITE_KEY}`);
+              const parsedData = decrypt(storedData, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
+              parsedData.currentQuestion = currentQuestion;
+              const encrypt_text = encrypt(parsedData, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
+              localStorage.setItem(`${import.meta.env.VITE_KEY}`, encrypt_text);
+            } else {
+              localStorage.removeItem(`${import.meta.env.VITE_KEY}`);
+              window.location.reload()
+            }
+          }
+          ).catch((err) => {
+            console.log("err")
+          })
         }
+        setTextFieldValue("")
       } else {
         setErr("Incorrect Answer")
         setTimeout(() => {
@@ -51,27 +70,22 @@ const Quiz = ({ questions }) => {
     setLeaderBoard(!leaderboard);
   }
 
+  // useEffect(() => {
+  // }, [currentQuestion])
+
   useEffect(() => {
-    axios.post(`${import.meta.env.VITE_API}` + 'api/updatescore', 
+    axios.post(`${import.meta.env.VITE_API}` + 'api/getscore', 
     {
       email: user.email,
-      score: currentQuestion, 
     }).then((res) => {
-      if(res.data.msg) {
-        var storedData = localStorage.getItem(`${import.meta.env.VITE_KEY}`);
-        const parsedData = decrypt(storedData, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
-        parsedData.currentQuestion = currentQuestion;
-        const encrypt_text = encrypt(parsedData, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
-        localStorage.setItem(`${import.meta.env.VITE_KEY}`, encrypt_text);
-      } else {
-        localStorage.removeItem(`${import.meta.env.VITE_KEY}`);
-        window.location.reload()
-      }
+      setCurrentQuestion(res.data.score)
+      console.log(res.data.score)
     }
     ).catch((err) => {
       console.log("err")
     })
-  }, [currentQuestion])
+  }, [])
+
 
   return (
     <div className="quiz-container">
