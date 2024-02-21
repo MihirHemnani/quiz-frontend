@@ -47,6 +47,7 @@ const CurrentPosition = (props) => {
 
                 <div className="result">
                     <div style={{textAlign: "center", marginTop: "1vh", marginBottom: "1vh"}}><span className="active-question-no">Result</span></div>
+                    
                     <p>
                         Total Questions: <span>{props.props}</span>
                     </p>
@@ -55,6 +56,12 @@ const CurrentPosition = (props) => {
                     </p>
                     <p>
                         Current Rank: <span>{currank}</span>
+                    </p>
+                    <p>
+                        Username: <span>{user.username}</span>
+                    </p>
+                    <p>
+                        Email ID: <span>{user.email}</span>
                     </p>
                 </div>
             }
