@@ -88,7 +88,7 @@ const Quiz = ({ questions }) => {
           <span className="total-question">/{questions.length}</span></div>
           {/* <h2>{question}</h2> */}
           {currentQuestion === questions.length - 1 &&  <div style={{textAlign: "center", marginTop: "1vh"}}>
-          <span style={{color: "black"}} className="active-question-no">{Difficulty}
+          <span style={{color: "black"}} className="active-question-no">Scan QR Code and Fill the Form
           </span>
         </div>
         }
