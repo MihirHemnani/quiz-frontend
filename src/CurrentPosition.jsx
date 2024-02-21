@@ -7,8 +7,8 @@ import {Spinner} from './Spinner'
 const CurrentPosition = (props) => {
 
     const [ currank, setCurrRank ] = useState(0)
-    const storedData = localStorage.getItem(`${import.meta.env.VITE_KEY}`)
-    const user = decrypt(storedData, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
+    const storedData = localStorage.getItem(`${import.meta.env.VITE_KEY}`) || null
+    const user = decrypt(storedData, `${import.meta.env.VITE_ENCRYPTION_KEY}`) || null
     const [leaderboard, setLeaderBoard] = useState(false);
 
     const showLeaderBoard =  () => {
@@ -49,7 +49,7 @@ const CurrentPosition = (props) => {
                     <div style={{textAlign: "center", marginTop: "1vh", marginBottom: "1vh"}}><span className="active-question-no">Result</span></div>
                     
                     <p>
-                        Total Questions: <span>{props.props}</span>
+                        Total Questions: <span>{props.props - 1}</span>
                     </p>
                     <p>
                         Your Score: <span>{user.currentQuestion}</span>
