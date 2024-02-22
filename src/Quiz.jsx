@@ -38,6 +38,7 @@ const Quiz = ({ questions }) => {
           axios.post(`${import.meta.env.VITE_API}` + 'api/updatescore', 
           {
             email: user.email,
+            questionId: currentQuestion,
           }).then((res) => {
             if(res.data.msg) {
               var storedData = localStorage.getItem(`${import.meta.env.VITE_KEY}`);
