@@ -29,31 +29,13 @@ const Quiz = ({ questions }) => {
     axios.post(`${import.meta.env.VITE_API}` + "api/answer",
     {
       questionId: currentQuestion,
-      answer: textFieldValue
+      answer: textFieldValue,
+      email: user.email
     }
     ).then(res => {
       if(res.data.msg) {
         if(questions.length !== currentQuestion) {
           setCurrentQuestion((prev) => prev + 1);
-          axios.post(`${import.meta.env.VITE_API}` + 'api/updatescore', 
-          {
-            email: user.email,
-            questionId: currentQuestion,
-          }).then((res) => {
-            if(res.data.msg) {
-              var storedData = localStorage.getItem(`${import.meta.env.VITE_KEY}`);
-              const parsedData = decrypt(storedData, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
-              parsedData.currentQuestion = currentQuestion;
-              const encrypt_text = encrypt(parsedData, `${import.meta.env.VITE_ENCRYPTION_KEY}`)
-              localStorage.setItem(`${import.meta.env.VITE_KEY}`, encrypt_text);
-            } else {
-              localStorage.removeItem(`${import.meta.env.VITE_KEY}`);
-              window.location.reload()
-            }
-          }
-          ).catch((err) => {
-            console.log("err")
-          })
         }
         setTextFieldValue("")
       } else {
